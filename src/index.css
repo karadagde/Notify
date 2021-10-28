@@ -1,0 +1,264 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.container {
+  display: flex;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin: auto;
+  background-color: #f7f7f7;
+  flex-direction: column;
+  overflow: visible;
+  width: 468px;
+  min-height: 95vh;
+  border-radius: 10px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+button {
+  border-radius: 20px;
+  border: 1px solid #000000d6;
+  background-color: #000000d6;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 12px 45px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: transform 80ms ease-in;
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+form {
+  background-color: #ffffff;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 50px;
+  height: 100%;
+  text-align: center;
+}
+
+input {
+  background-color: #eee;
+  border-radius: 10px;
+  border: none;
+  padding: 12px 15px;
+  margin: 8px 0;
+  width: 100%;
+}
+
+label {
+  font-family: "Tahoma", "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-size: 20px;
+}
+
+.container-signup label {
+  font-family: "Tahoma", "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-size: 16px;
+}
+
+.message button,
+p {
+  text-align: center;
+  margin: 16px;
+  border-radius: 10px;
+}
+
+#send_button {
+  width: 150px;
+}
+
+.messagebox {
+  height: 240px;
+  width: 400px;
+  overflow-y: auto;
+  border: 2px solid rgb(184, 184, 184);
+  border-radius: 15px;
+  margin: 15px;
+  background-color: #2663a075;
+}
+
+.messagebox p {
+  text-align: center;
+  margin: 16px;
+  border-radius: 10px;
+  color: black;
+}
+
+.license-plate {
+  background: url(https://www.rdwdata.nl/images/template/kenteken_start.jpg)
+    no-repeat 0 0 #f4be06;
+  background-repeat: no-repeat;
+  background-size: 35px;
+  border: 3px solid black;
+  border-radius: 10px;
+  padding: 10px 15px;
+  margin: 16px 6px;
+  width: 80%;
+  height: 55px;
+  font-size: 55px;
+  text-align: center;
+}
+.homepage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.status-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.status-page input {
+  background-color: #eee;
+  border: none;
+  padding: 12px 15px;
+  margin: 8px 0;
+  width: 80%;
+}
+.send-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 4px;
+  padding: 0px;
+}
+.chat-page {
+  display: flex;
+  flex-direction: column;
+  padding: 50px 50px;
+  border-radius: 10px;
+}
+
+.license-plate-chat {
+  background: url(https://www.rdwdata.nl/images/template/kenteken_start.jpg)
+    no-repeat 0 0 #f4be06;
+  background-repeat: no-repeat;
+  background-size: 20px;
+  border: 3px solid black;
+  border-radius: 10px;
+  padding-top: 5px;
+  padding-left: 15px;
+  padding-bottom: 15px;
+  margin: 6px 6px;
+  width: 110px;
+  height: 20px;
+  font-size: 25px;
+}
+
+.license-plate-chat-main {
+  background: url(https://www.rdwdata.nl/images/template/kenteken_start.jpg)
+    no-repeat 0 0 #f4be06;
+  background-repeat: no-repeat;
+  background-size: 17px;
+  border: 3px solid black;
+  border-radius: 10px;
+  padding-top: 15px;
+  padding-left: 15px;
+  padding-bottom: 15px;
+  margin: 6px 6px;
+  height: 25px;
+  font-size: 15px;
+}
+
+.message-reply {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.message-reply input {
+  background-color: #eee;
+  border: none;
+  border-radius: 10px;
+  padding: 15px 15px;
+  margin: 10px;
+  width: 150px;
+}
+
+.container-login {
+  display: flex;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin: auto;
+  background-color: #fff;
+  flex-direction: column;
+  overflow: visible;
+  width: 468px;
+  height: 95vh;
+  border-radius: 10px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.container-login form {
+  background-color: #ffffff;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 7px 50px;
+  height: 100%;
+  text-align: center;
+}
+
+.container-login button {
+  border-radius: 20px;
+  border: 1px solid #000000d6;
+  background-color: #000000d6;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 12px 45px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: transform 80ms ease-in;
+  margin: 5px;
+}
+
+.container-signup {
+  display: flex;
+  height: 95vh;
+  margin: auto;
+  padding-bottom: 20px;
+  background-color: #fff;
+  flex-direction: column;
+  overflow: visible;
+  border-radius: 10px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.container-signup input {
+  background-color: #eee;
+  border-radius: 10px;
+  padding: 12px 15px;
+  margin: 4px 0;
+  width: 100%;
+}
+.error {
+  border: 1px solid rgb(133, 33, 33);
+  border-radius: 5px;
+  font-size: 10px;
+  color: red;
+}

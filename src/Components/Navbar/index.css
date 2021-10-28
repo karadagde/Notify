@@ -1,0 +1,21 @@
+ul {
+  list-style-type: none;
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  width: 470px;
+  text-align: center;
+  justify-content: space-between;
+  background-color: rgb(34, 34, 34);
+}
+
+li {
+  font-size: 25px;
+  padding: 10px;
+  height: 40px;
+  margin: 10px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 1), 0 10px 10px rgba(0, 0, 0, 1);
+  border-radius: 10px;
+  color: white;
+}
