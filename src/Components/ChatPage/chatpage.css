@@ -22,7 +22,7 @@
   border: 2px solid #dedede;
   background-color: #2663a0ad;
   text-align: right;
-  border-radius: 10px;
+  border-radius: 25px 0 15px 15px;
   padding: 2px;
   margin: 10px 0;
   max-width: 270px;
@@ -37,7 +37,7 @@
   background-color: #2663a04d;
   max-width: 270px;
   text-align: left;
-  border-radius: 10px;
+  border-radius: 0 25px 15px 15px;
   padding: 2px;
   margin: 10px 0;
   display: flex;
