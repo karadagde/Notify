@@ -13,9 +13,13 @@ export default function NavbarMessages(props) {
       <ul>
         <li onClick={goBack}>Back</li>
         {user.uid === props.message.senderUID ? (
-          <li>Message with {props.message.receiverLicensePlate}</li>
+          <li style={{ fontSize: "22px" }}>
+            Message with {props.message.receiverLicensePlate}
+          </li>
         ) : (
-          <li>Message with {props.message.senderLicensePlate}</li>
+          <li style={{ fontSize: "22px" }}>
+            Message with {props.message.senderLicensePlate}
+          </li>
         )}
         <li>Notify</li>
       </ul>
