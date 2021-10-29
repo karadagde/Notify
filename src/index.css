@@ -355,7 +355,7 @@ p {
 
   .messagebox {
     height: 240px;
-    width: 100%;
+    width: 98vw;
     overflow-y: auto;
     border: 2px solid rgb(184, 184, 184);
     border-radius: 15px;
