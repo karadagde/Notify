@@ -286,7 +286,7 @@ p {
     background-color: #f7f7f7;
     flex-direction: column;
     overflow: visible;
-    width: 100%;
+    width: 100vw;
     min-height: 95vh;
     border-radius: 10px;
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
@@ -355,7 +355,7 @@ p {
 
   .messagebox {
     height: 240px;
-    width: 80%px;
+    width: 80%;
     overflow-y: auto;
     border: 2px solid rgb(184, 184, 184);
     border-radius: 15px;
@@ -471,7 +471,7 @@ p {
     background-color: #fff;
     flex-direction: column;
     overflow: visible;
-    width: 100%;
+    width: 100vw;
     height: 95vh;
     border-radius: 10px;
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
@@ -505,6 +505,7 @@ p {
 
   .container-signup {
     display: flex;
+    width: 100vw;
     height: 95vh;
     margin: auto;
     padding-bottom: 20px;
