@@ -53,14 +53,19 @@ export default function SendMessage() {
       // eslint-disable-next-line no-unused-vars
       const receiverProfile = querySnapshot.forEach(async (userDoc) => {
         found_users = userDoc.data();
-
+        currentD =
+          distance(
+            latitude,
+            userDoc.data().location[0],
+            longitude,
+            userDoc.data().location[1]
+          ) * 1000;
         const receiverID = userDoc.data().uid;
         console.log(found_users, "reveal yourself");
         // eslint-disable-next-line no-unused-vars
         const receiverLicensePlate = await userDoc.data().licensePlate;
         const convID = user.uid + receiverID;
         const timeStamp = new Date();
-
         if (userDoc.data().status !== "") {
           currentD =
             distance(
@@ -111,7 +116,7 @@ export default function SendMessage() {
       console.log(currentD, "is distance getting updated?");
       if (found_users === null) {
         setLpError(
-          "Unfortunately this EV owner does not use our app. Please be sure that you wrote the correct lisence plate"
+          "Unfortunately this EV owner does not use our app. Please be sure that you wrote the correct licence plate"
         );
         setTimeout(() => setLpError(false), 5000);
         setTimeout(() => setInputLicensePlate(""), 5000);
