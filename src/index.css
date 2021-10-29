@@ -355,17 +355,17 @@ p {
 
   .messagebox {
     height: 240px;
-    width: 80%;
+    width: 100%;
     overflow-y: auto;
     border: 2px solid rgb(184, 184, 184);
     border-radius: 15px;
-    margin: 15px;
+    margin: 5px;
     background-color: #2663a075;
   }
 
   .messagebox p {
     text-align: center;
-    margin: 16px;
+    margin: 12px;
     border-radius: 10px;
     color: black;
   }
