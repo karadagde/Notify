@@ -47,6 +47,7 @@ export default function SetStatus() {
   const resetStatus = async () => {
     await updateDoc(userRef, {
       status: "",
+      location: [],
     });
   };
 

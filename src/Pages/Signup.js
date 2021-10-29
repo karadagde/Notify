@@ -42,17 +42,17 @@ export default function Signup() {
       );
       if (response.data.length === 0) {
         setLpError(
-          "Your License Plate is not registered in RDW system. Please check your details or try to register sometime later"
+          "Your License Plate is not registered in RDW system. Please check your details or try to register sometime later!"
         );
-        setTimeout(() => setLpError(false), 5000);
+        setTimeout(() => setLpError(false), 6000);
       } else if (
         response.data.length !== 0 &&
         response.data[0].brandstof_omschrijving !== "Elektriciteit"
       ) {
         setLpError(
-          "your car is not registered as EV. This app can be used only for EVs"
+          "Your car is not registered as an EV. This app can only be used for EVs"
         );
-        setTimeout(() => setLpError(false), 5000);
+        setTimeout(() => setLpError(false), 6000);
 
         //   return;
       } else {
@@ -63,9 +63,9 @@ export default function Signup() {
         });
         if (found_users !== null) {
           setLpError(
-            "This license plate already has been registered. Please check your details"
+            "This license plate already has been registered under another account in our system. Please check your details"
           );
-          setTimeout(() => setLpError(false), 5000);
+          setTimeout(() => setLpError(false), 6000);
 
           //  return;
         } else {
@@ -108,8 +108,10 @@ export default function Signup() {
             .catch((err) => {
               if (err.code === "auth/email-already-in-use") {
                 console.log(err.code, "this is error code mk");
-                setLpError("This email is already registered");
-                setTimeout(() => setLpError(false), 5000);
+                setLpError(
+                  "This email is already registered. Please go back to previous page to sign in"
+                );
+                setTimeout(() => setLpError(false), 6000);
               }
             });
         }
