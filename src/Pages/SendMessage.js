@@ -38,7 +38,6 @@ export default function SendMessage() {
       });
     })();
   }, [longitude, latitude]);
-  console.log(lpError, "did you find a user?");
 
   const SendMessage = async () => {
     /// check if licenseplate is registered
@@ -61,7 +60,6 @@ export default function SendMessage() {
             userDoc.data().location[1]
           ) * 1000;
         const receiverID = userDoc.data().uid;
-        console.log(found_users, "reveal yourself");
         // eslint-disable-next-line no-unused-vars
         const receiverLicensePlate = await userDoc.data().licensePlate;
         const convID = user.uid + receiverID;
@@ -74,9 +72,7 @@ export default function SendMessage() {
               longitude,
               userDoc.data().location[1]
             ) * 1000;
-          console.log(currentD, "this is D");
           if (currentD > 100) {
-            console.log("distance is too much I think", currentD);
             return setLpError(
               `We could not verify that you are at the same location with ${receiverLicensePlate}. Please make it sure that you are close to the car that you want to contact.`
             );
@@ -95,7 +91,6 @@ export default function SendMessage() {
               receiverLicensePlate: userDoc.data().licensePlate,
               requestDateTime: timeStamp.toLocaleString(),
             });
-            console.log("distance is small");
           }
         } else {
           // eslint-disable-next-line no-unused-vars
@@ -110,10 +105,8 @@ export default function SendMessage() {
             receiverLicensePlate: userDoc.data().licensePlate,
             requestDateTime: timeStamp.toLocaleString(),
           });
-          console.log("status was empty");
         }
       });
-      console.log(currentD, "is distance getting updated?");
       if (found_users === null) {
         setLpError(
           "Unfortunately this EV owner does not use our app. Please be sure that you wrote the correct licence plate"
@@ -121,15 +114,11 @@ export default function SendMessage() {
         setTimeout(() => setLpError(false), 5000);
         setTimeout(() => setInputLicensePlate(""), 5000);
       } else if (currentD > 100 && longitude) {
-        console.log("what might be the reason you do not work?");
         setLpError(
           `We could not verify that you are at the same location with ${inputLicensePlate}. Please make it sure that you are close to the car that you want to contact.`
         );
         setTimeout(() => setLpError(false), 5000);
       } else {
-        console.log(found_users, "reveal yourself");
-        console.log(currentD, "distance at tthe bottom?");
-
         history.push("/");
       }
     } catch (e) {

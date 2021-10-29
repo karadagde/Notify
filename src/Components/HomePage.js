@@ -21,7 +21,6 @@ export default function HomePage() {
       querySnapshot.forEach((doc) => {
         recMessagesSnapshot.push(doc.data());
       });
-      console.log(recMessagesSnapshot, "this is unsub");
       setReceivedMessages(recMessagesSnapshot);
       return recMessagesSnapshot;
     });
@@ -42,7 +41,6 @@ export default function HomePage() {
       querySnapshot.forEach((doc) => {
         sentMessagesSnapshot.push(doc.data());
       });
-      console.log(sentMessagesSnapshot, "this is unsub");
       setSentMessages(sentMessagesSnapshot);
       return sentMessagesSnapshot;
     });

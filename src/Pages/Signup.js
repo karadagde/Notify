@@ -35,7 +35,6 @@ export default function Signup() {
     const userRef = collection(db, "users");
     let found_users = null;
     const q = query(userRef, where("licensePlate", "==", licensePlate));
-    console.log("here is submit event");
     try {
       const response = await axios.get(
         `https://opendata.rdw.nl/resource/8ys7-d773.json?$$app_token=${process.env.REACT_APP_RDW_APP_TOKEN}&kenteken=${licensePlate}`
@@ -74,7 +73,6 @@ export default function Signup() {
               const user = userCredential.user;
               const token = await userCredential.user.getIdToken();
               // Signed in
-              console.log(userCredential, "this is user cred");
               // eslint-disable-next-line no-unused-vars
               const userData = setDoc(
                 doc(db, "users", userCredential.user.uid),
@@ -107,7 +105,6 @@ export default function Signup() {
             })
             .catch((err) => {
               if (err.code === "auth/email-already-in-use") {
-                console.log(err.code, "this is error code mk");
                 setLpError(
                   "This email is already registered. Please go back to previous page to sign in"
                 );
@@ -120,9 +117,6 @@ export default function Signup() {
       //   const errorCode = error.code;
       const errorMessage = error.message;
       console.log(errorMessage);
-      // if (errorMessage === "EMAIL_EXISTS") {
-      // }
-      // console.log(errorCode);
     }
   };
 

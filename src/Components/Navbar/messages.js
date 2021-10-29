@@ -4,7 +4,6 @@ import "./index.css";
 export default function NavbarMessages(props) {
   const user = JSON.parse(localStorage.getItem("user"));
 
-  console.log(props, "wtf is wrong again");
   function goBack() {
     window.history.back();
   }

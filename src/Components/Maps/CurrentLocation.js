@@ -67,7 +67,6 @@ export default function AApp() {
     lat: latitude,
     lng: longitude,
   });
-  // console.log(clicks[0].toJSON(), "clicking");
   const Marker = (options) => {
     useEffect(() => {
       // eslint-disable-next-line no-undef

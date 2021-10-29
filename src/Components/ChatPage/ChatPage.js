@@ -14,8 +14,6 @@ export default function ChatPage() {
   const { messageID } = useParams();
   const [messageObj, setMessageObj] = useState();
 
-  console.log(messageObj, "is there a message obj");
-
   useEffect(() => {
     if (!user) return;
 
@@ -36,8 +34,6 @@ export default function ChatPage() {
     return unsubscribe;
     // eslint-disable-next-line
   }, []);
-
-  console.log(messageObj, "what the hell happened?");
 
   if (!messageObj) {
     return (

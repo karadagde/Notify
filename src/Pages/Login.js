@@ -14,7 +14,6 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [user, setUser] = useState(null);
   const [password, setPassword] = useState("");
-  console.log("am I at login Component?");
 
   const handleSubmit = (event) => {
     event.preventDefault();
