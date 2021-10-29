@@ -16,7 +16,9 @@ import axios from "axios";
 import Alert from "@mui/material/Alert";
 
 export default function Signup() {
-  const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState(
+    JSON.parse(localStorage.getItem("user"))
+  );
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [licensePlate, setLicensePlate] = useState("");
@@ -129,7 +131,13 @@ export default function Signup() {
       <NavSignUp />
       <form onSubmit={handleSubmit}>
         <h3>Please fill in your details to register</h3>
-        {lpError ? <Alert severity="warning">{lpError}</Alert> : <></>}
+        {lpError ? (
+          <Alert severity="warning" style={{ margin: "5px" }}>
+            {lpError}
+          </Alert>
+        ) : (
+          <></>
+        )}
         <label for="name">Name</label>
         <br></br>
         <input

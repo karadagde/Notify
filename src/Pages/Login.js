@@ -12,7 +12,8 @@ export default function Login() {
   const history = useHistory();
   const auth = getAuth();
   const [email, setEmail] = useState("");
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
+
   const [password, setPassword] = useState("");
 
   const handleSubmit = (event) => {
@@ -39,6 +40,7 @@ export default function Login() {
             })
           );
         });
+        history.push("/");
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -53,7 +55,6 @@ export default function Login() {
       history.push("/");
     }
   }, [user, history]);
-
   return (
     <div>
       <div className="container-login">
