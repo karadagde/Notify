@@ -54,6 +54,7 @@ export default function Login() {
     if (user !== null) {
       history.push('/');
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user?.uid, history]);
   return (
     <div>
