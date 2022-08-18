@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import LoggedInUserPage from "./LoggedIn";
-import { Redirect } from "react-router";
-import { collection, where, query, onSnapshot } from "@firebase/firestore";
-import db from "../firebase";
+import React, { useEffect, useState } from 'react';
+import LoggedInUserPage from './LoggedIn';
+import { Redirect } from 'react-router';
+import { collection, where, query, onSnapshot } from '@firebase/firestore';
+import db from '../firebase';
 
 export default function HomePage() {
-  const user = JSON.parse(localStorage.getItem("user"));
+  const user = JSON.parse(sessionStorage.getItem('user'));
   const [receivedMessages, setReceivedMessages] = useState([]);
   const [sentMessages, setSentMessages] = useState([]);
 
@@ -13,8 +13,8 @@ export default function HomePage() {
     if (!user) return;
 
     const q = query(
-      collection(db, "messages"),
-      where("receiverUID", "==", user.uid)
+      collection(db, 'messages'),
+      where('receiverUID', '==', user.uid)
     );
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       const recMessagesSnapshot = [];
@@ -33,8 +33,8 @@ export default function HomePage() {
     if (!user) return;
 
     const q = query(
-      collection(db, "messages"),
-      where("senderUID", "==", user.uid)
+      collection(db, 'messages'),
+      where('senderUID', '==', user.uid)
     );
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       const sentMessagesSnapshot = [];

@@ -1,8 +1,8 @@
-import React from "react";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { useState } from "react";
-import { Redirect } from "react-router";
-import db from "../firebase";
+import React from 'react';
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { useState } from 'react';
+import { Redirect } from 'react-router';
+import db from '../firebase';
 import {
   doc,
   setDoc,
@@ -10,19 +10,19 @@ import {
   query,
   where,
   getDocs,
-} from "firebase/firestore";
-import NavSignUp from "../Components/Navbar/signup";
-import axios from "axios";
-import Alert from "@mui/material/Alert";
+} from 'firebase/firestore';
+import NavSignUp from '../Components/Navbar/signup';
+import axios from 'axios';
+import Alert from '@mui/material/Alert';
 
 export default function Signup() {
   const [currentUser, setCurrentUser] = useState(
-    JSON.parse(localStorage.getItem("user"))
+    JSON.parse(sessionStorage.getItem('user'))
   );
-  const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
-  const [licensePlate, setLicensePlate] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
+  const [licensePlate, setLicensePlate] = useState('');
+  const [password, setPassword] = useState('');
   const [lpError, setLpError] = useState(false);
   const auth = getAuth();
 
@@ -34,24 +34,24 @@ export default function Signup() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const userRef = collection(db, "users");
+    const userRef = collection(db, 'users');
     let found_users = null;
-    const q = query(userRef, where("licensePlate", "==", licensePlate));
+    const q = query(userRef, where('licensePlate', '==', licensePlate));
     try {
       const response = await axios.get(
         `https://opendata.rdw.nl/resource/8ys7-d773.json?$$app_token=${process.env.REACT_APP_RDW_APP_TOKEN}&kenteken=${licensePlate}`
       );
       if (response.data.length === 0) {
         setLpError(
-          "Your License Plate is not registered in RDW system. Please check your details or try to register sometime later!"
+          'Your License Plate is not registered in RDW system. Please check your details or try to register sometime later!'
         );
         setTimeout(() => setLpError(false), 6000);
       } else if (
         response.data.length !== 0 &&
-        response.data[0].brandstof_omschrijving !== "Elektriciteit"
+        response.data[0].brandstof_omschrijving !== 'Elektriciteit'
       ) {
         setLpError(
-          "Your car is not registered as an EV. This app can only be used for EVs"
+          'Your car is not registered as an EV. This app can only be used for EVs'
         );
         setTimeout(() => setLpError(false), 6000);
 
@@ -64,7 +64,7 @@ export default function Signup() {
         });
         if (found_users !== null) {
           setLpError(
-            "This license plate already has been registered under another account in our system. Please check your details"
+            'This license plate already has been registered under another account in our system. Please check your details'
           );
           setTimeout(() => setLpError(false), 6000);
 
@@ -77,38 +77,38 @@ export default function Signup() {
               // Signed in
               // eslint-disable-next-line no-unused-vars
               const userData = setDoc(
-                doc(db, "users", userCredential.user.uid),
+                doc(db, 'users', userCredential.user.uid),
                 {
                   name: name,
                   email: email,
                   licensePlate: licensePlate,
                   location: [],
-                  status: "",
+                  status: '',
                   uid: userCredential.user.uid,
                 }
               );
-              localStorage.setItem(
-                "user",
+              sessionStorage.setItem(
+                'user',
                 JSON.stringify({
                   name: name,
                   email: email,
                   uid: userCredential.user.uid,
                   location: [],
-                  status: "",
+                  status: '',
                   licensePlate: licensePlate,
                   token,
                 })
               );
               setCurrentUser(user);
-              setEmail("");
-              setName("");
-              setLicensePlate("");
-              setPassword("");
+              setEmail('');
+              setName('');
+              setLicensePlate('');
+              setPassword('');
             })
             .catch((err) => {
-              if (err.code === "auth/email-already-in-use") {
+              if (err.code === 'auth/email-already-in-use') {
                 setLpError(
-                  "This email is already registered. Please go back to previous page to sign in"
+                  'This email is already registered. Please go back to previous page to sign in'
                 );
                 setTimeout(() => setLpError(false), 6000);
               }
@@ -132,7 +132,7 @@ export default function Signup() {
       <form onSubmit={handleSubmit}>
         <h3>Please fill in your details to register</h3>
         {lpError ? (
-          <Alert severity="warning" style={{ margin: "5px" }}>
+          <Alert severity="warning" style={{ margin: '5px' }}>
             {lpError}
           </Alert>
         ) : (

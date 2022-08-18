@@ -1,33 +1,33 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { useState } from "react";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { useHistory } from "react-router";
-import { useEffect } from "react";
-import { collection, query, where, getDocs } from "firebase/firestore";
-import db from "../firebase";
-import NotLoggedIn from "../Components/Navbar/Unauth";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { useHistory } from 'react-router';
+import { useEffect } from 'react';
+import { collection, query, where, getDocs } from 'firebase/firestore';
+import db from '../firebase';
+import NotLoggedIn from '../Components/Navbar/Unauth';
 
 export default function Login() {
   const history = useHistory();
   const auth = getAuth();
-  const [email, setEmail] = useState("");
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
+  const [email, setEmail] = useState('');
+  const [user, setUser] = useState(JSON.parse(sessionStorage.getItem('user')));
 
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
       .then(async (userCredential) => {
         const token = await userCredential.user.getIdToken();
-        const userRef = collection(db, "users");
-        const q = query(userRef, where("uid", "==", userCredential.user.uid));
+        const userRef = collection(db, 'users');
+        const q = query(userRef, where('uid', '==', userCredential.user.uid));
         const querySnapshot = await getDocs(q);
         querySnapshot.forEach((doc) => {
           setUser(doc.data());
-          localStorage.setItem(
-            "user",
+          sessionStorage.setItem(
+            'user',
             JSON.stringify({
               // email: email,
               // uid: userCredential.user.uid,
@@ -40,7 +40,7 @@ export default function Login() {
             })
           );
         });
-        history.push("/");
+        history.push('/');
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -52,14 +52,14 @@ export default function Login() {
 
   useEffect(() => {
     if (user !== null) {
-      history.push("/");
+      history.push('/');
     }
-  }, [user, history]);
+  }, [user?.uid, history]);
   return (
     <div>
       <div className="container-login">
         <NotLoggedIn />
-        <h2 style={{ textAlign: "center" }}>Welcome to Notify</h2>
+        <h2 style={{ textAlign: 'center' }}>Welcome to Notify</h2>
         <br></br>
         <div>
           <form onSubmit={handleSubmit}>

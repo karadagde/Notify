@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
+import React, { useEffect } from 'react';
+import { useState } from 'react';
 import {
   collection,
   query,
@@ -8,17 +8,17 @@ import {
   doc,
   setDoc,
   //getDoc,
-} from "firebase/firestore";
-import db from "../firebase";
-import MapContainer from "../Components/Maps/MapContainer";
-import { useHistory } from "react-router";
-import NavbarNewMessage from "../Components/Navbar/NavbarNewMessage";
-import { Alert } from "@mui/material";
-import distance from "../Components/DistanceCalculator";
+} from 'firebase/firestore';
+import db from '../firebase';
+import MapContainer from '../Components/Maps/MapContainer';
+import { useHistory } from 'react-router';
+import NavbarNewMessage from '../Components/Navbar/NavbarNewMessage';
+import { Alert } from '@mui/material';
+import distance from '../Components/DistanceCalculator';
 
 export default function SendMessage() {
-  const user = JSON.parse(localStorage.getItem("user"));
-  const [inputLicensePlate, setInputLicensePlate] = useState("");
+  const user = JSON.parse(sessionStorage.getItem('user'));
+  const [inputLicensePlate, setInputLicensePlate] = useState('');
   const [latitude, setLatitude] = useState();
   const [longitude, setLongitude] = useState();
   const history = useHistory();
@@ -42,9 +42,9 @@ export default function SendMessage() {
   const SendMessage = async () => {
     /// check if licenseplate is registered
     // reference to users collection
-    const userRef = collection(db, "users");
+    const userRef = collection(db, 'users');
     //query for the collection
-    const q = query(userRef, where("licensePlate", "==", inputLicensePlate));
+    const q = query(userRef, where('licensePlate', '==', inputLicensePlate));
     try {
       const querySnapshot = await getDocs(q);
       let found_users = null;
@@ -64,7 +64,7 @@ export default function SendMessage() {
         const receiverLicensePlate = await userDoc.data().licensePlate;
         const convID = user.uid + receiverID;
         const timeStamp = new Date();
-        if (userDoc.data().status !== "") {
+        if (userDoc.data().status !== '') {
           currentD =
             distance(
               latitude,
@@ -77,10 +77,10 @@ export default function SendMessage() {
               `We could not verify that you are at the same location with ${receiverLicensePlate}. Please make it sure that you are close to the car that you want to contact.`
             );
           } else {
-            await setDoc(doc(db, "messages", convID), {
+            await setDoc(doc(db, 'messages', convID), {
               messageID: convID,
               request:
-                "Hi,I would like to use the charging spot that you are using now. What time will you be leaving this spot?",
+                'Hi,I would like to use the charging spot that you are using now. What time will you be leaving this spot?',
               senderUID: user.uid,
               senderLicensePlate: user.licensePlate,
               response: {
@@ -94,13 +94,13 @@ export default function SendMessage() {
           }
         } else {
           // eslint-disable-next-line no-unused-vars
-          const newMessage = await setDoc(doc(db, "messages", convID), {
+          const newMessage = await setDoc(doc(db, 'messages', convID), {
             messageID: convID,
             request:
-              "Hi,I would like to use the charging spot that you are using now. What time will you be leaving this spot?",
+              'Hi,I would like to use the charging spot that you are using now. What time will you be leaving this spot?',
             senderUID: user.uid,
             senderLicensePlate: user.licensePlate,
-            response: "",
+            response: '',
             receiverUID: receiverID,
             receiverLicensePlate: userDoc.data().licensePlate,
             requestDateTime: timeStamp.toLocaleString(),
@@ -109,17 +109,17 @@ export default function SendMessage() {
       });
       if (found_users === null) {
         setLpError(
-          "Unfortunately this EV owner does not use our app. Please be sure that you wrote the correct licence plate"
+          'Unfortunately this EV owner does not use our app. Please be sure that you wrote the correct licence plate'
         );
         setTimeout(() => setLpError(false), 5000);
-        setTimeout(() => setInputLicensePlate(""), 5000);
+        setTimeout(() => setInputLicensePlate(''), 5000);
       } else if (currentD > 100 && longitude) {
         setLpError(
           `We could not verify that you are at the same location with ${inputLicensePlate}. Please make it sure that you are close to the car that you want to contact.`
         );
         setTimeout(() => setLpError(false), 5000);
       } else {
-        history.push("/");
+        history.push('/');
       }
     } catch (e) {
       console.log(e.message);

@@ -1,16 +1,16 @@
-import React from "react";
-import MapContainer from "../Components/Maps/MapContainer";
-import { useState, useEffect } from "react";
-import moment from "moment";
-import db from "../firebase";
-import { doc, getDoc, updateDoc } from "@firebase/firestore";
-import Status from "../Components/Navbar/status";
+import React from 'react';
+import MapContainer from '../Components/Maps/MapContainer';
+import { useState, useEffect } from 'react';
+import moment from 'moment';
+import db from '../firebase';
+import { doc, getDoc, updateDoc } from '@firebase/firestore';
+import Status from '../Components/Navbar/status';
 
 export default function SetStatus() {
-  const user = JSON.parse(localStorage.getItem("user"));
+  const user = JSON.parse(sessionStorage.getItem('user'));
 
-  const [date, setDate] = useState(moment().format("YYYY-MM-DD"));
-  const [time, setTime] = useState(moment().format("HH:mm"));
+  const [date, setDate] = useState(moment().format('YYYY-MM-DD'));
+  const [time, setTime] = useState(moment().format('HH:mm'));
   const [statusInfo, setStatusInfo] = useState(null);
   const [latitude, setLatitude] = useState();
   const [longitude, setLongitude] = useState();
@@ -24,7 +24,7 @@ export default function SetStatus() {
     })();
   }, []);
 
-  const userRef = doc(db, "users", user.uid);
+  const userRef = doc(db, 'users', user.uid);
 
   useEffect(() => {
     const getStatus = async () => {
@@ -46,7 +46,7 @@ export default function SetStatus() {
 
   const resetStatus = async () => {
     await updateDoc(userRef, {
-      status: "",
+      status: '',
       location: [],
     });
   };
@@ -59,7 +59,7 @@ export default function SetStatus() {
       </div>
     );
   } else {
-    return statusInfo.status === "" ? (
+    return statusInfo.status === '' ? (
       <div className="status-page">
         <Status />
         <h2>I am parking my car:</h2>
@@ -69,7 +69,7 @@ export default function SetStatus() {
           type="date"
           defaultValue={date}
           onChange={(e) => setDate(e.target.value)}
-        />{" "}
+        />{' '}
         <input
           type="time"
           defaultValue={time}
@@ -83,8 +83,8 @@ export default function SetStatus() {
         <h2>I parked my car at</h2>
         <MapContainer coordinates={{ latitude, longitude }} />
         <p>
-          I expect to leave this location by {statusInfo.status.time} on{" "}
-          {statusInfo.status.date}{" "}
+          I expect to leave this location by {statusInfo.status.time} on{' '}
+          {statusInfo.status.date}{' '}
         </p>
         <button onClick={resetStatus}>Reset status</button>
       </div>
