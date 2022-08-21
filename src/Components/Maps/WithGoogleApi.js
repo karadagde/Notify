@@ -1,7 +1,7 @@
-import * as React from "react";
-import { Wrapper } from "@googlemaps/react-wrapper";
-import { useState, useEffect } from "react";
-import { useRef } from "react";
+import * as React from 'react';
+import { Wrapper } from '@googlemaps/react-wrapper';
+import { useState, useEffect } from 'react';
+import { useRef } from 'react';
 
 const render = (status) => {
   return <h1>{status}</h1>;
@@ -16,6 +16,7 @@ function Map({ onClick, onIdle, children, style, center, ...options }) {
       setMap(new window.google.maps.Map(ref.current));
     }
   }, [map]);
+  console.log(ref, 'ref');
 
   useEffect(() => {
     if (map) {
@@ -31,7 +32,7 @@ function Map({ onClick, onIdle, children, style, center, ...options }) {
 
   useEffect(() => {
     if (map) {
-      ["click", "idle"].forEach((eventName) =>
+      ['click', 'idle'].forEach((eventName) =>
         // eslint-disable-next-line no-undef
         google.maps.event.clearListeners(map, eventName)
       );
@@ -39,11 +40,11 @@ function Map({ onClick, onIdle, children, style, center, ...options }) {
       if (onClick) {
         // eslint-disable-next-line no-undef
 
-        map.addListener("click", onClick);
+        map.addListener('click', onClick);
       }
 
       if (onIdle) {
-        map.addListener("idle", () => onIdle(map));
+        map.addListener('idle', () => onIdle(map));
       }
     }
   }, [onClick, onIdle, map]);
@@ -52,6 +53,7 @@ function Map({ onClick, onIdle, children, style, center, ...options }) {
     <>
       <div ref={ref} style={style} />
       {React.Children.map(children, (child) => {
+        console.log('child', child);
         if (React.isValidElement(child)) {
           return React.cloneElement(child, { map });
         }
@@ -84,7 +86,7 @@ export default function AApp() {
   };
   useEffect(() => {
     (async () => {
-      navigator.geolocation.getCurrentPosition(function (position) {
+      navigator.geolocation.getCurrentPosition(function(position) {
         setCenter({
           lat: position.coords.latitude,
           lng: position.coords.longitude,
@@ -109,7 +111,7 @@ export default function AApp() {
   };
 
   return (
-    <div style={{ display: "flex", height: "100%" }}>
+    <div style={{ display: 'flex', height: '100%' }}>
       <Wrapper apiKey={process.env.REACT_APP_API_KEY} render={render}>
         <Map
           center={center}
@@ -117,10 +119,10 @@ export default function AApp() {
           onIdle={onIdle}
           zoom={zoom}
           style={{
-            width: "400px",
-            height: "200px",
-            border: "2px solid black",
-            borderRadius: "10px",
+            width: '400px',
+            height: '200px',
+            border: '2px solid black',
+            borderRadius: '10px',
           }}
           loading="lazy"
         >

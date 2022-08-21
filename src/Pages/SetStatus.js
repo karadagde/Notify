@@ -5,6 +5,7 @@ import moment from 'moment';
 import db from '../firebase';
 import { doc, getDoc, updateDoc } from '@firebase/firestore';
 import Status from '../Components/Navbar/status';
+import AApp from '../Components/Maps/WithGoogleApi';
 
 export default function SetStatus() {
   const user = JSON.parse(sessionStorage.getItem('user'));
@@ -17,7 +18,7 @@ export default function SetStatus() {
 
   useEffect(() => {
     (async () => {
-      navigator.geolocation.getCurrentPosition(function (position) {
+      navigator.geolocation.getCurrentPosition(function(position) {
         setLatitude(position.coords.latitude);
         setLongitude(position.coords.longitude);
       });
@@ -64,6 +65,7 @@ export default function SetStatus() {
         <Status />
         <h2>I am parking my car:</h2>
         <MapContainer coordinates={{ latitude, longitude }} />
+        {/* <AApp /> */}
         <p>I expect to leave this location by</p>
         <input
           type="date"
