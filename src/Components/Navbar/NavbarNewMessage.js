@@ -1,3 +1,5 @@
+import React from 'react';
+
 export default function NavbarNewMessage() {
   function goBack() {
     window.history.back();

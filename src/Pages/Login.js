@@ -55,7 +55,7 @@ export default function Login() {
       history.push('/');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user?.uid, history]);
+  }, [user, history]);
   return (
     <div>
       <div className="container-login">
@@ -64,7 +64,7 @@ export default function Login() {
         <br></br>
         <div>
           <form onSubmit={handleSubmit}>
-            <label for="email">Email</label>
+            <label htmlFor="email">Email</label>
             <br></br>
             <input
               id="email"
@@ -75,7 +75,7 @@ export default function Login() {
               required
             ></input>
             <br></br>
-            <label for="password">Password</label>
+            <label htmlFor="password">Password</label>
             <br></br>
             <input
               id="password"
